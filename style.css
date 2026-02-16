@@ -1,0 +1,26 @@
+body {
+    font-family: Arial;
+    background: #ffffff;
+    color: #222;
+}
+
+.container {
+    width: 800px;
+    margin: auto;
+}
+
+.header {
+    text-align: center;
+    margin-top: 40px;
+}
+
+.profile {
+    width: 160px;
+    border-radius: 50%;
+}
+
+h2 {
+    border-bottom: 1px solid #ddd;
+    padding-bottom: 5px;
+    margin-top: 40px;
+}
