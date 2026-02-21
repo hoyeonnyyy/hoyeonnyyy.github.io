@@ -26,11 +26,27 @@
     gap: 20px;
 }
 
-.brand {
-    color: #1f2d46;
+.github-link {
+    width: 52px;
+    height: 52px;
+    border: 1px solid #d6deed;
+    border-radius: 12px;
+    background: #f7f9fe;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
     text-decoration: none;
-    font-size: 30px;
-    font-weight: 700;
+    flex-shrink: 0;
+}
+
+.github-link img {
+    width: 24px;
+    height: 24px;
+    display: block;
+}
+
+.github-link:hover {
+    background: #edf3ff;
 }
 
 .topnav {
@@ -154,8 +170,15 @@ ul li {
         gap: 12px;
     }
 
-    .brand {
-        font-size: 24px;
+    .github-link {
+        width: 46px;
+        height: 46px;
+        border-radius: 10px;
+    }
+
+    .github-link img {
+        width: 22px;
+        height: 22px;
     }
 
     .topnav {
