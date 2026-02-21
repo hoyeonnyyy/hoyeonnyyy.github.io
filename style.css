@@ -15,8 +15,12 @@ body {
 }
 
 .profile {
-    width: 160px;
-    border-radius: 50%;
+    width: 280px;
+    aspect-ratio: 1 / 1;
+    object-fit: cover;
+    border-radius: 18px;
+    border: 2px solid #9fd3ff;
+    box-shadow: 0 0 16px rgba(110, 176, 255, 0.25);
 }
 
 h2 {
