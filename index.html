@@ -1,5 +1,5 @@
 ﻿<!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <title>Hoyeon Kim</title>
@@ -7,13 +7,29 @@
 </head>
 
 <body>
+<header class="topbar">
+    <div class="topbar-inner">
+        <a class="brand" href="#top">Hoyeon Kim</a>
+        <nav class="topnav">
+            <a href="#education">Education</a>
+            <a href="#experience">Experience</a>
+            <a href="#projects">Projects</a>
+            <a href="#conference">Conference</a>
+            <a href="#awards">Honors</a>
+        </nav>
+        <div class="lang-switch" aria-label="Language">
+            <button type="button" class="lang-btn is-active" data-lang="en">EN</button>
+            <button type="button" class="lang-btn" data-lang="ko">KR</button>
+        </div>
+    </div>
+</header>
 
-<div class="container">
+<div class="container" id="top">
 
     <div class="intro">
         <div class="intro-left">
             <h1>Hoyeon Kim</h1>
-            <section>
+            <section id="education">
                 <h2>Education</h2>
                 <p>
                     <strong>Sogang University, Seoul, Republic of Korea</strong><br>
@@ -32,12 +48,12 @@
         </div>
     </div>
 
-    <section>
+    <section id="research-interest">
         <h2>Research Interest</h2>
         <p>Multi-Agent Coordination, Reasoning, Investment Strategy</p>
     </section>
 
-    <section>
+    <section id="experience">
         <h2>Experience</h2>
         <ul>
             <li>
@@ -66,7 +82,7 @@
             </li>
         </ul>
     </section>
-    <section>
+    <section id="projects">
         <h2>Projects</h2>
         <ul>
             <li>
@@ -109,7 +125,7 @@
     </section>
 
 
-    <section>
+    <section id="conference">
         <h2>Conference</h2>
         <ul>
             <li>
@@ -123,7 +139,7 @@
         </ul>
     </section>
 
-    <section>
+    <section id="certification">
         <h2>Certification</h2>
         <ul>
             <li>
@@ -149,7 +165,7 @@
         </ul>
     </section>
 
-    <section>
+    <section id="awards">
         <h2>Awards</h2>
         <ul>
             <li>
@@ -167,7 +183,7 @@
         </ul>
     </section>
 
-    <section>
+    <section id="scholarship">
         <h2>Scholarship</h2>
         <ul>
             <li>
@@ -194,6 +210,17 @@
     </section>
 
 </div>
+
+<script>
+    const langButtons = document.querySelectorAll(".lang-btn");
+    langButtons.forEach((button) => {
+        button.addEventListener("click", () => {
+            langButtons.forEach((btn) => btn.classList.remove("is-active"));
+            button.classList.add("is-active");
+            document.documentElement.lang = button.dataset.lang;
+        });
+    });
+</script>
 
 </body>
 </html>
