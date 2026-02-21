@@ -40,7 +40,7 @@
 }
 
 .profile {
-    width: 280px;
+    width: clamp(150px, 26vw, 280px);
     height: auto;
     border-radius: 18px;
     border: 2px solid #9fd3ff;
@@ -81,15 +81,11 @@ ul li {
 
 @media (max-width: 860px) {
     .intro {
-        grid-template-columns: 1fr;
-        gap: 24px;
+        grid-template-columns: 1fr auto;
+        gap: 20px;
     }
 
-    .intro-right {
-        order: -1;
-    }
-
-    .profile {
-        width: min(320px, 100%);
+    .intro-left h1 {
+        font-size: clamp(34px, 6vw, 48px);
     }
 }
