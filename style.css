@@ -96,6 +96,10 @@ section[id] {
     scroll-margin-top: 90px;
 }
 
+#top {
+    scroll-margin-top: 90px;
+}
+
 .intro {
     display: grid;
     grid-template-columns: 1fr auto;
