@@ -162,10 +162,17 @@ ul li {
     justify-content: space-between;
     align-items: baseline;
     gap: 16px;
+    width: 100%;
+}
+
+.item-head strong {
+    flex: 1;
 }
 
 .item-date {
+    margin-left: auto;
     white-space: nowrap;
+    text-align: right;
 }
 
 @media (max-width: 860px) {
