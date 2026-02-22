@@ -126,7 +126,7 @@
                     return "+=" + Math.max(track.scrollWidth - window.innerWidth, 1);
                 },
                 pin: true,
-                scrub: 0.75,
+                scrub: 0.42,
                 anticipatePin: 1,
                 fastScrollEnd: true,
                 invalidateOnRefresh: true,
@@ -141,9 +141,9 @@
                         return targetIndex / maxIndex;
                     },
                     inertia: false,
-                    duration: { min: 0.2, max: 0.55 },
-                    delay: 0.12,
-                    ease: "power1.inOut"
+                    duration: { min: 0.08, max: 0.22 },
+                    delay: 0.02,
+                    ease: "power3.out"
                 } : false,
                 onUpdate: function (self) {
                     updateProgress(self.progress);
