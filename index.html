@@ -20,8 +20,8 @@
             <a href="#awards">Honors</a>
         </nav>
         <div class="lang-switch" aria-label="Language">
-            <button type="button" class="lang-btn is-active" data-lang="en">EN</button>
-            <button type="button" class="lang-btn" data-lang="ko">KR</button>
+            <a href="index.html" class="lang-btn is-active" aria-current="page">EN</a>
+            <a href="kr.html" class="lang-btn">KR</a>
         </div>
     </div>
 </header>
@@ -224,17 +224,6 @@
     </section>
 
 </div>
-
-<script>
-    const langButtons = document.querySelectorAll(".lang-btn");
-    langButtons.forEach((button) => {
-        button.addEventListener("click", () => {
-            langButtons.forEach((btn) => btn.classList.remove("is-active"));
-            button.classList.add("is-active");
-            document.documentElement.lang = button.dataset.lang;
-        });
-    });
-</script>
 
 </body>
 </html>

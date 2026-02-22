@@ -83,8 +83,12 @@ body * {
     border-radius: 999px;
     padding: 6px 12px;
     cursor: pointer;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
     font-family: inherit;
     font-size: 16px;
+    text-decoration: none;
 }
 
 .lang-btn.is-active {

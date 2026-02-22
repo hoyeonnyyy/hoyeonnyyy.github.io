@@ -1,0 +1,295 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>김호연 | Portfolio Deck (KR)</title>
+    <link rel="stylesheet" href="./kr_style.css">
+    <script>
+        window.tailwind = {
+            config: {
+                theme: {
+                    extend: {
+                        colors: {
+                            deck: {
+                                bg: "#090d16",
+                                panel: "#101727",
+                                line: "#23304b",
+                                accent: "#7dd3fc",
+                                accent2: "#a78bfa"
+                            }
+                        }
+                    }
+                }
+            }
+        };
+    </script>
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body>
+    <div class="lang-toggle" aria-label="언어 선택">
+        <a href="index.html" class="lang-link">EN</a>
+        <a href="kr.html" class="lang-link is-active" aria-current="page">KR</a>
+    </div>
+
+    <div class="deck-status">
+        <div class="progress-wrap" aria-label="슬라이드 진행률">
+            <div class="progress-fill" id="progressFill"></div>
+        </div>
+        <div class="dot-nav" id="dotNav" role="tablist" aria-label="슬라이드 네비게이션">
+            <button class="dot is-active" type="button" data-index="0" aria-label="1번 슬라이드"></button>
+            <button class="dot" type="button" data-index="1" aria-label="2번 슬라이드"></button>
+            <button class="dot" type="button" data-index="2" aria-label="3번 슬라이드"></button>
+            <button class="dot" type="button" data-index="3" aria-label="4번 슬라이드"></button>
+            <button class="dot" type="button" data-index="4" aria-label="5번 슬라이드"></button>
+            <button class="dot" type="button" data-index="5" aria-label="6번 슬라이드"></button>
+            <button class="dot" type="button" data-index="6" aria-label="7번 슬라이드"></button>
+            <button class="dot" type="button" data-index="7" aria-label="8번 슬라이드"></button>
+        </div>
+        <div class="slide-counter" id="slideCounter">01 / 08</div>
+    </div>
+
+    <main class="deck-shell" id="deckShell">
+        <div class="deck-track" id="deckTrack">
+            <section class="slide slide-1 is-active" data-slide-title="Cover">
+                <div class="slide-no">01</div>
+                <div class="slide-inner cover-grid">
+                    <div class="cover-copy">
+                        <p class="eyebrow reveal">AI / MAS ENGINEER · FINANCIAL INTELLIGENCE</p>
+                        <h1 class="cover-title reveal">
+                            금융과 AI의 경계를 허무는<br>
+                            AI/MAS Engineer, 김호연입니다.
+                        </h1>
+                        <p class="cover-sub reveal">Bridging Multi-Agent Systems and Financial Intelligence</p>
+                    </div>
+                    <div class="cover-name-wrap reveal">
+                        <div class="cover-name">HOYEON<br>KIM</div>
+                    </div>
+                    <div class="scroll-hint reveal" aria-hidden="true">
+                        <span>마우스 휠을 내려보세요</span>
+                        <div class="wheel-icon">
+                            <div class="wheel-dot"></div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <section class="slide slide-2" data-slide-title="Identity">
+                <div class="slide-no">02</div>
+                <div class="slide-inner split-grid">
+                    <div class="panel reveal">
+                        <p class="eyebrow">CORE IDENTITY</p>
+                        <h2 class="panel-title">핵심 역량 요약</h2>
+                        <div class="stack-block">
+                            <h3>학력</h3>
+                            <p>서강대학교 AI Finance 석사</p>
+                            <p>인하대학교 산업공학 학사</p>
+                        </div>
+                        <div class="stack-block">
+                            <h3>핵심 도메인</h3>
+                            <p>Multi-Agent Coordination</p>
+                            <p>Reasoning</p>
+                            <p>Investment Strategy</p>
+                        </div>
+                    </div>
+
+                    <div class="panel reveal">
+                        <p class="eyebrow">SKILL STACK</p>
+                        <h2 class="panel-title">기술 스택 &amp; 자격</h2>
+
+                        <div class="chip-group">
+                            <p class="chip-label">AI / Dev</p>
+                            <div class="flex flex-wrap gap-2">
+                                <span class="chip">Python</span>
+                                <span class="chip">LLM</span>
+                                <span class="chip">Deep Learning</span>
+                                <span class="chip">MAS</span>
+                            </div>
+                        </div>
+
+                        <div class="chip-group">
+                            <p class="chip-label">Finance</p>
+                            <div class="flex flex-wrap gap-2">
+                                <span class="chip">투자자산운용사</span>
+                                <span class="chip">TESAT 1급</span>
+                            </div>
+                        </div>
+
+                        <div class="chip-group">
+                            <p class="chip-label">Certifications</p>
+                            <div class="flex flex-wrap gap-2">
+                                <span class="chip">Azure AI Fundamentals</span>
+                                <span class="chip">SQLD</span>
+                                <span class="chip">ADsP</span>
+                                <span class="chip">OPIc</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <section class="slide slide-3" data-slide-title="Experience">
+                <div class="slide-no">03</div>
+                <div class="slide-inner">
+                    <p class="eyebrow reveal">EXPERIENCE</p>
+                    <h2 class="hero-title reveal">경험 타임라인</h2>
+                    <div class="timeline-grid">
+                        <article class="timeline-card reveal">
+                            <span class="timeline-step">01</span>
+                            <h3>CMU AI Intensive</h3>
+                            <p class="timeline-meta">Carnegie Mellon University</p>
+                            <p>AI 프로젝트 진행 및 교수진과 MAS 연구 협업</p>
+                        </article>
+                        <article class="timeline-card reveal">
+                            <span class="timeline-step">02</span>
+                            <h3>SKT FLY AI</h3>
+                            <p class="timeline-meta">SK Telecom</p>
+                            <p>데이터 기반 모델링 및 클라우드 배포 400시간 수료</p>
+                        </article>
+                        <article class="timeline-card reveal">
+                            <span class="timeline-step">03</span>
+                            <h3>LG AIMERS</h3>
+                            <p class="timeline-meta">LG AI Research</p>
+                            <p>시계열 데이터 분석 및 온라인 판매 예측 개발</p>
+                        </article>
+                        <article class="timeline-card reveal">
+                            <span class="timeline-step">04</span>
+                            <h3>ORAIL (인하대)</h3>
+                            <p class="timeline-meta">Operation Research &amp; AI Lab</p>
+                            <p>반도체 제조 공정 비전 AI 연구</p>
+                        </article>
+                    </div>
+                </div>
+            </section>
+
+            <section class="slide slide-4" data-slide-title="Project 1">
+                <div class="slide-no">04</div>
+                <div class="slide-inner project-layout">
+                    <div class="project-main reveal">
+                        <p class="eyebrow">PROJECT 1</p>
+                        <h2 class="hero-title">Multi Agent System for Chart Question Answering</h2>
+                        <p class="project-affiliation">Carnegie Mellon University</p>
+                        <p class="project-body">
+                            Planning, Perception, Iterative Verification을 포함하는 자가 개선형 MAS ChartX VQA
+                            파이프라인 구축.
+                        </p>
+                    </div>
+                    <div class="project-side reveal">
+                        <h3>성과</h3>
+                        <p>실패 기반 재사용을 위한 Protoform memory 도입 및 토픽별 정확도 트래킹 구현.</p>
+                        <div class="tag-row">
+                            <span class="pill">MAS</span>
+                            <span class="pill">VQA</span>
+                            <span class="pill">ChartX</span>
+                            <span class="pill">Memory</span>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <section class="slide slide-5" data-slide-title="Project 2">
+                <div class="slide-no">05</div>
+                <div class="slide-inner project-layout">
+                    <div class="project-main reveal">
+                        <p class="eyebrow">PROJECT 2</p>
+                        <h2 class="hero-title">Hierarchical Tool-Augmented Trading Framework</h2>
+                        <p class="project-affiliation">서강대학교</p>
+                        <p class="project-body">
+                            시장, 섹터, 개별 주식 시그널을 통합하는 계층형 LLM 트레이딩 파이프라인 구축
+                            (Conflict-driven reasoning 적용).
+                        </p>
+                    </div>
+                    <div class="project-side reveal">
+                        <h3>성과</h3>
+                        <p>Rule-based 베이스라인 대비 수익률 및 Sharpe ratio 성과 검증.</p>
+                        <div class="tag-row">
+                            <span class="pill">LLM Trading</span>
+                            <span class="pill">Backtest</span>
+                            <span class="pill">Sharpe</span>
+                            <span class="pill">Reasoning</span>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <section class="slide slide-6" data-slide-title="Project 3">
+                <div class="slide-no">06</div>
+                <div class="slide-inner project-layout">
+                    <div class="project-main reveal">
+                        <p class="eyebrow">PROJECT 3</p>
+                        <h2 class="hero-title">Stock Selection and Portfolio Optimization</h2>
+                        <p class="project-affiliation">서강대학교</p>
+                        <p class="project-body">
+                            S&amp;P 100 동적 섹터 상호작용을 반영한 Graph Attention Networks(GAT) 기반의 수익률 예측 모델 개발.
+                        </p>
+                    </div>
+                    <div class="project-side reveal">
+                        <h3>성과</h3>
+                        <p>클래스 불균형 문제를 해결한 엔드투엔드 학습 파이프라인 구축.</p>
+                        <div class="tag-row">
+                            <span class="pill">GAT</span>
+                            <span class="pill">Temporal Graph</span>
+                            <span class="pill">S&amp;P 100</span>
+                            <span class="pill">E2E Training</span>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <section class="slide slide-7" data-slide-title="Project 4">
+                <div class="slide-no">07</div>
+                <div class="slide-inner project-layout">
+                    <div class="project-main reveal">
+                        <p class="eyebrow">PROJECT 4</p>
+                        <h2 class="hero-title">Semiconductor Wafer Defect Detection</h2>
+                        <p class="project-affiliation">인하대학교 (NRF 지원)</p>
+                        <p class="project-body">딥러닝을 활용한 반도체 웨이퍼 결함 탐지 자동화.</p>
+                    </div>
+                    <div class="project-side reveal">
+                        <h3>성과</h3>
+                        <p>실제 산업 데이터의 불균형 문제를 준지도 학습으로 해결하고 학회 제1저자 구두 발표 수행.</p>
+                        <div class="tag-row">
+                            <span class="pill">Computer Vision</span>
+                            <span class="pill">Semi-supervised</span>
+                            <span class="pill">Manufacturing AI</span>
+                            <span class="pill">Oral</span>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <section class="slide slide-8" data-slide-title="Outro">
+                <div class="slide-no">08</div>
+                <div class="slide-inner outro-layout">
+                    <div class="outro-main reveal">
+                        <p class="eyebrow">OUTRO &amp; CONTACT</p>
+                        <h2 class="hero-title">Continuous Learning, Scalable Impact</h2>
+                        <p class="outro-copy">
+                            현재 다중 에이전트 시스템(MAS)의 의사결정 고도화 연구에 집중하며 ICML MAS 워크샵 논문 제출 및
+                            8월 KDD 학회 졸업 논문을 준비하고 있습니다.
+                        </p>
+                        <div class="highlight-card">
+                            <span class="highlight-label">Highlight</span>
+                            <p>KSQM 2023 대학원/학부생 경진대회 대상 수상</p>
+                        </div>
+                    </div>
+
+                    <div class="outro-cta reveal">
+                        <h3>Contact</h3>
+                        <div class="cta-list">
+                            <a class="cta-btn" href="mailto:your.email@example.com">Email</a>
+                            <a class="cta-btn" href="https://github.com/hoyeonnyyy" target="_blank" rel="noopener noreferrer">GitHub</a>
+                            <a class="cta-btn cta-primary" href="./resume.pdf" download>Resume (PDF)</a>
+                        </div>
+                        <p class="cta-note">이메일과 이력서 파일 경로는 실제 값으로 교체해 주세요.</p>
+                    </div>
+                </div>
+            </section>
+        </div>
+    </main>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+    <script src="./kr_script.js"></script>
+</body>
+</html>
