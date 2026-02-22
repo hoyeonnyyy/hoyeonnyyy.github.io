@@ -109,6 +109,9 @@
         }
 
         gsap.registerPlugin(ScrollTrigger);
+        ScrollTrigger.config({
+            ignoreMobileResize: true
+        });
 
         horizontalTween = gsap.to(track, {
             x: function () {
@@ -123,14 +126,17 @@
                     return "+=" + Math.max(track.scrollWidth - window.innerWidth, 1);
                 },
                 pin: true,
-                scrub: 1,
+                scrub: 0.75,
                 anticipatePin: 1,
+                fastScrollEnd: true,
                 invalidateOnRefresh: true,
                 snap: slides.length > 1 ? {
                     snapTo: 1 / (slides.length - 1),
-                    duration: { min: 0.12, max: 0.35 },
-                    delay: 0.04,
-                    ease: "power2.out"
+                    directional: true,
+                    inertia: false,
+                    duration: { min: 0.2, max: 0.55 },
+                    delay: 0.12,
+                    ease: "power1.inOut"
                 } : false,
                 onUpdate: function (self) {
                     updateProgress(self.progress);
