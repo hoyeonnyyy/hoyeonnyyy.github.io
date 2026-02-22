@@ -131,8 +131,15 @@
                 fastScrollEnd: true,
                 invalidateOnRefresh: true,
                 snap: slides.length > 1 ? {
-                    snapTo: 1 / (slides.length - 1),
-                    directional: true,
+                    snapTo: function (value) {
+                        var maxIndex = slides.length - 1;
+                        var scaled = value * maxIndex;
+                        var lower = Math.floor(scaled);
+                        var fraction = scaled - lower;
+                        var targetIndex = lower + (fraction >= 0.5 ? 1 : 0);
+                        targetIndex = clamp(targetIndex, 0, maxIndex);
+                        return targetIndex / maxIndex;
+                    },
                     inertia: false,
                     duration: { min: 0.2, max: 0.55 },
                     delay: 0.12,
