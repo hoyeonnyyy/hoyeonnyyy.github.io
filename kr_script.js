@@ -128,7 +128,7 @@
                 pin: true,
                 scrub: 0.42,
                 anticipatePin: 1,
-                fastScrollEnd: true,
+                fastScrollEnd: false,
                 invalidateOnRefresh: true,
                 snap: slides.length > 1 ? {
                     snapTo: function (value) {
