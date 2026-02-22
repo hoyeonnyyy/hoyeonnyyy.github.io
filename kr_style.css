@@ -324,9 +324,12 @@ body {
     letter-spacing: -0.005em;
 }
 
-.cover-lead strong {
-    color: #f1f6ff;
-    font-weight: 700;
+.cover-lead-line {
+    display: block;
+}
+
+.cover-lead-line + .cover-lead-line {
+    margin-top: 8px;
 }
 
 .cover-keyword-grid {
