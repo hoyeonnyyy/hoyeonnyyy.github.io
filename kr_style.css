@@ -643,7 +643,7 @@ body {
     margin-top: 24px;
     display: grid;
     --timeline-gap: 14px;
-    --timeline-col: calc((100% - (3 * var(--timeline-gap))) / 4);
+    --timeline-col: calc((100% - var(--timeline-gap) - var(--timeline-gap) - var(--timeline-gap)) / 4);
     grid-template-columns: repeat(4, minmax(0, 1fr));
     gap: var(--timeline-gap);
     align-items: stretch;
@@ -715,8 +715,8 @@ body {
 }
 
 .timeline-note-1 { left: calc(var(--timeline-col) + (var(--timeline-gap) / 2)); }
-.timeline-note-2 { left: calc((2 * var(--timeline-col)) + (1.5 * var(--timeline-gap))); }
-.timeline-note-3 { left: calc((3 * var(--timeline-col)) + (2.5 * var(--timeline-gap))); }
+.timeline-note-2 { left: calc(var(--timeline-col) + var(--timeline-col) + var(--timeline-gap) + (var(--timeline-gap) / 2)); }
+.timeline-note-3 { left: calc(var(--timeline-col) + var(--timeline-col) + var(--timeline-col) + var(--timeline-gap) + var(--timeline-gap) + (var(--timeline-gap) / 2)); }
 
 .timeline-point {
     display: none;
