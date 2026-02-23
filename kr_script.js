@@ -18,6 +18,37 @@
         return Math.min(Math.max(value, min), max);
     }
 
+    function alignTimelineHonors() {
+        var grid = document.querySelector(".slide-3 .timeline-grid");
+
+        if (!grid) {
+            return;
+        }
+
+        var cards = Array.prototype.slice.call(grid.querySelectorAll(".timeline-card"));
+        var notes = Array.prototype.slice.call(grid.querySelectorAll(".timeline-note"));
+
+        if (cards.length < 4 || notes.length < 3) {
+            return;
+        }
+
+        [[0, 1], [1, 2], [2, 3]].forEach(function (pair, i) {
+            var leftCard = cards[pair[0]];
+            var rightCard = cards[pair[1]];
+            var note = notes[i];
+
+            if (!leftCard || !rightCard || !note) {
+                return;
+            }
+
+            var leftCenter = leftCard.offsetLeft + leftCard.offsetWidth / 2;
+            var rightCenter = rightCard.offsetLeft + rightCard.offsetWidth / 2;
+            var midpoint = (leftCenter + rightCenter) / 2;
+
+            note.style.left = midpoint + "px";
+        });
+    }
+
     function setActiveSlide(index) {
         slides.forEach(function (slide, i) {
             slide.classList.toggle("is-active", i === index);
@@ -152,17 +183,23 @@
         });
 
         ScrollTrigger.addEventListener("refreshInit", setViewportUnit);
+        ScrollTrigger.addEventListener("refresh", alignTimelineHonors);
         ScrollTrigger.refresh();
     }
 
     function init() {
         setViewportUnit();
+        alignTimelineHonors();
         setActiveSlide(0);
         updateProgress(0);
         bindDotEvents();
         bindKeyboardEvents();
         initGsapHorizontalScroll();
-        window.addEventListener("resize", setViewportUnit);
+        window.addEventListener("resize", function () {
+            setViewportUnit();
+            alignTimelineHonors();
+        });
+        window.requestAnimationFrame(alignTimelineHonors);
     }
 
     if (document.readyState === "loading") {
