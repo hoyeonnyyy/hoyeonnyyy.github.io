@@ -482,19 +482,21 @@ body {
 
 .identity-left-wrap {
     display: grid;
-    gap: 14px;
+    gap: 12px;
     align-self: stretch;
-    padding-top: 34px;
+    padding-top: 10px;
 }
 
 .identity-photo-card {
+    width: min(100%, 240px);
+    justify-self: start;
     border-radius: 22px;
     border: 1px solid rgba(255, 255, 255, 0.08);
     background:
         radial-gradient(circle at 25% 15%, rgba(125, 211, 252, 0.1), transparent 52%),
         rgba(10, 15, 28, 0.78);
     box-shadow: var(--shadow);
-    padding: 10px;
+    padding: 8px;
     overflow: hidden;
 }
 
@@ -502,6 +504,7 @@ body {
     display: block;
     width: 100%;
     aspect-ratio: 3 / 4;
+    max-height: 320px;
     object-fit: cover;
     object-position: center top;
     border-radius: 14px;
@@ -522,6 +525,8 @@ body {
 
 .identity-panel-left {
     min-height: 0;
+    padding-top: 18px;
+    padding-bottom: 18px;
 }
 
 .identity-panel-right {
