@@ -640,12 +640,13 @@ body {
 }
 
 .timeline-grid {
-    margin-top: 22px;
+    margin-top: 12px;
     display: grid;
     grid-template-columns: repeat(4, minmax(0, 1fr));
     gap: 14px;
     align-items: stretch;
     position: relative;
+    padding-top: 44px;
 }
 
 .timeline-grid::before {
@@ -653,15 +654,49 @@ body {
     position: absolute;
     left: 4%;
     right: 4%;
-    top: 52px;
+    top: 88px;
     height: 2px;
     border-radius: 999px;
     background: linear-gradient(90deg, rgba(125, 211, 252, 0.2), rgba(167, 139, 250, 0.3));
 }
 
+.timeline-note {
+    position: absolute;
+    top: 0;
+    transform: translateX(-50%);
+    max-width: 240px;
+    padding: 7px 10px;
+    border-radius: 12px;
+    border: 1px solid rgba(125, 211, 252, 0.14);
+    background: rgba(7, 12, 23, 0.74);
+    color: #d9e6ff;
+    font-size: 0.74rem;
+    line-height: 1.35;
+    text-align: center;
+    box-shadow: 0 12px 24px rgba(3, 6, 14, 0.25);
+}
+
+.timeline-note::after {
+    content: "";
+    position: absolute;
+    left: 50%;
+    top: 100%;
+    width: 8px;
+    height: 8px;
+    margin-top: 8px;
+    transform: translateX(-50%);
+    border-radius: 50%;
+    background: var(--accent);
+    box-shadow: 0 0 10px rgba(125, 211, 252, 0.5);
+}
+
+.timeline-note-1 { left: 25%; }
+.timeline-note-2 { left: 50%; }
+.timeline-note-3 { left: 75%; }
+
 .timeline-card {
     position: relative;
-    margin-top: 18px;
+    margin-top: 54px;
     padding: 18px 16px 16px;
     border-radius: 18px;
     border: 1px solid rgba(255, 255, 255, 0.08);
@@ -672,7 +707,7 @@ body {
 .timeline-card::before {
     content: "";
     position: absolute;
-    top: -10px;
+    top: -40px;
     left: 18px;
     width: 10px;
     height: 10px;
@@ -707,6 +742,14 @@ body {
     color: #d9e2f6;
     font-size: 0.93rem;
     line-height: 1.5;
+}
+
+.timeline-desc span {
+    display: block;
+}
+
+.timeline-desc span + span {
+    margin-top: 6px;
 }
 
 .project-layout {
@@ -925,9 +968,15 @@ body {
 
     .timeline-grid {
         grid-template-columns: repeat(2, minmax(0, 1fr));
+        padding-top: 0;
+        margin-top: 22px;
     }
 
     .timeline-grid::before {
+        display: none;
+    }
+
+    .timeline-note {
         display: none;
     }
 
