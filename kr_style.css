@@ -280,7 +280,7 @@ body {
     display: grid;
     align-content: start;
     gap: 0;
-    max-width: 980px;
+    max-width: none;
     border-radius: 28px;
     border: 1px solid rgba(255, 255, 255, 0.09);
     background:
@@ -288,7 +288,7 @@ body {
         radial-gradient(circle at 15% 85%, rgba(167, 139, 250, 0.1), transparent 52%),
         rgba(15, 22, 37, 0.68);
     box-shadow: var(--shadow);
-    padding: 28px 28px 24px;
+    padding: 34px 34px 30px;
     overflow: hidden;
 }
 
@@ -303,9 +303,18 @@ body {
     opacity: 0.9;
 }
 
+.cover-kicker {
+    margin: 0 0 10px;
+    color: #9edcff;
+    font-size: 0.82rem;
+    font-weight: 700;
+    letter-spacing: 0.11em;
+    text-transform: uppercase;
+}
+
 .cover-title {
     margin: 0;
-    font-size: clamp(1.18rem, 2.05vw, 1.62rem);
+    font-size: clamp(1.06rem, 1.55vw, 1.42rem);
     line-height: 1.32;
     letter-spacing: -0.02em;
     font-weight: 700;
@@ -320,7 +329,7 @@ body {
     color: #ccd9f1;
     font-size: clamp(0.93rem, 1vw, 1.05rem);
     line-height: 1.72;
-    max-width: 62ch;
+    max-width: none;
     letter-spacing: -0.005em;
 }
 
@@ -747,7 +756,7 @@ body {
 
     .cover-copy {
         max-width: none;
-        padding: 24px 22px 20px;
+        padding: 28px 24px 22px;
         border-radius: 22px;
     }
 
@@ -758,7 +767,7 @@ body {
     }
 
     .cover-lead {
-        max-width: 66ch;
+        max-width: none;
     }
 
     .split-grid,
@@ -848,6 +857,12 @@ body {
     .cover-copy {
         padding: 18px 16px 16px;
         border-radius: 18px;
+    }
+
+    .cover-kicker {
+        margin-bottom: 8px;
+        font-size: 0.68rem;
+        letter-spacing: 0.09em;
     }
 
     .cover-lead {
