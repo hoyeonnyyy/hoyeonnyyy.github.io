@@ -901,6 +901,10 @@ body {
     font-size: 1.1rem;
 }
 
+.project-side p + h3 {
+    margin-top: 18px;
+}
+
 .project-side p {
     margin: 10px 0 0;
     color: #d9e2f6;
