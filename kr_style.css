@@ -869,8 +869,9 @@ body {
 }
 
 .project-layout .hero-title {
-    font-size: clamp(1.55rem, 2.6vw, 2.45rem);
+    font-size: clamp(1.2rem, 1.8vw, 1.7rem);
     max-width: none;
+    white-space: nowrap;
 }
 
 .project-side h3 {
@@ -1034,6 +1035,10 @@ body {
     .project-layout,
     .outro-layout {
         grid-template-columns: 1fr;
+    }
+
+    .project-layout .hero-title {
+        white-space: normal;
     }
 
     .identity-layout {
