@@ -866,6 +866,9 @@ body {
     line-height: 1.7;
     font-size: 1rem;
     max-width: none;
+    white-space: normal;
+    word-break: keep-all;
+    overflow-wrap: break-word;
 }
 
 .project-layout .hero-title {
@@ -1035,10 +1038,6 @@ body {
     .project-layout,
     .outro-layout {
         grid-template-columns: 1fr;
-    }
-
-    .project-layout .hero-title {
-        white-space: normal;
     }
 
     .identity-layout {

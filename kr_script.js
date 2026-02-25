@@ -18,6 +18,47 @@
         return Math.min(Math.max(value, min), max);
     }
 
+    function fitProjectTitles() {
+        var titles = Array.prototype.slice.call(document.querySelectorAll(".project-layout .hero-title"));
+
+        titles.forEach(function (title) {
+            if (!title.clientWidth) {
+                return;
+            }
+
+            var computedSize = parseFloat(window.getComputedStyle(title).fontSize);
+            var maxSize = Number(title.getAttribute("data-fit-max-size")) || computedSize;
+            var minSize = 12;
+            var low = minSize;
+            var high = Math.max(maxSize, minSize);
+            var mid = high;
+            var i = 0;
+
+            if (!title.hasAttribute("data-fit-max-size")) {
+                title.setAttribute("data-fit-max-size", String(maxSize));
+            }
+
+            title.style.fontSize = maxSize + "px";
+
+            if (title.scrollWidth <= title.clientWidth) {
+                return;
+            }
+
+            for (i = 0; i < 14; i += 1) {
+                mid = (low + high) / 2;
+                title.style.fontSize = mid + "px";
+
+                if (title.scrollWidth <= title.clientWidth) {
+                    low = mid;
+                } else {
+                    high = mid;
+                }
+            }
+
+            title.style.fontSize = low + "px";
+        });
+    }
+
     function alignTimelineHonors() {
         var grid = document.querySelector(".slide-3 .timeline-grid");
 
@@ -184,12 +225,14 @@
 
         ScrollTrigger.addEventListener("refreshInit", setViewportUnit);
         ScrollTrigger.addEventListener("refresh", alignTimelineHonors);
+        ScrollTrigger.addEventListener("refresh", fitProjectTitles);
         ScrollTrigger.refresh();
     }
 
     function init() {
         setViewportUnit();
         alignTimelineHonors();
+        fitProjectTitles();
         setActiveSlide(0);
         updateProgress(0);
         bindDotEvents();
@@ -198,8 +241,14 @@
         window.addEventListener("resize", function () {
             setViewportUnit();
             alignTimelineHonors();
+            fitProjectTitles();
         });
         window.requestAnimationFrame(alignTimelineHonors);
+        window.requestAnimationFrame(fitProjectTitles);
+
+        if (document.fonts && document.fonts.ready) {
+            document.fonts.ready.then(fitProjectTitles);
+        }
     }
 
     if (document.readyState === "loading") {
