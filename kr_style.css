@@ -865,7 +865,7 @@ body {
     color: #e3eafe;
     line-height: 1.7;
     font-size: 1rem;
-    max-width: 52ch;
+    max-width: none;
 }
 
 .project-layout .hero-title {
