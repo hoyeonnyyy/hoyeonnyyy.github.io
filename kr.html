@@ -256,7 +256,7 @@
                         <h2 class="hero-title">Multi Agent System for Chart QA</h2>
                         <p class="project-affiliation">Carnegie Mellon University</p>
                         <p class="project-body">
-                            Planning, Perception, Iterative Verification을 포함하는 자가 개선형 MAS ChartX VQA
+                            Planning, Perception, Iterative Verification을 포함하는 자가 개선형 Multi-Agent Chart Question Answering
                             파이프라인 구축
                         </p>
                         <div class="project-visual-wrap" aria-label="Project 1 visualization">
@@ -265,16 +265,23 @@
                     </div>
                     <div class="project-side reveal">
                         <h3>문제 정의</h3>
-                        <p>test</p>
+                        <p>차트 기반 VQA는 여전히 단일 범용 프롬프트에 의존하는 경우가 많아, 차트 유형별 해석 규칙을 구조적으로 반영하지 못하는 한계가 있습니다.</p>
+                        <p>그 결과 축·범례·단위가 얽힌 복합 시각 정보에서 값 추출 오류가 반복되고, 답변 근거의 일관성도 떨어집니다.</p>
+                        <p>또한 VLM 파인튜닝은 비용과 시간이 커서, 빠른 개선이 필요한 환경에서 현실적인 대응이 어렵습니다.</p>
                         <h3>해결 전략</h3>
-                        <p>test</p>
+                        <p>본 연구는 파인튜닝 대신 추론 단계에서 성능을 보정하는 Self-Refining 구조를 설계해, 차트 QA를 계획 → 추출 → 검증 → 수정의 순차 파이프라인으로 고정했습니다.</p>
+                        <p>먼저 Planning 단계에서 차트 유형에 맞게 Solution Steps / Critical Data / Answer Format을 분리해, Perception 단계에서 무엇을 어떤 순서로 읽어야 하는지 명시합니다.</p>
+                        <p>다음으로 Perception 단계에서는 Critical Data 키를 기준으로만 값을 추출하도록 제한해, 자유 서술형 출력 대신 근거 중심의 구조화된 추출을 유도합니다.</p>
+                        <p>이후 Verifier 단계에서 독립 추출(teacher)과 현재 추출 결과를 비교해 충분성(Yes/No)을 판정하고, 실패 시에만 보정 루프를 실행합니다.</p>
+                        <p>여기서 핵심은 반복 실패를 일회성 수정으로 끝내지 않고, 실패 패턴을 재사용 가능한 규칙으로 축적하는 것입니다. 이를 위해 오류 유형과 보정 지시문을 Protoform으로 정의하고 메모리에 저장해, 유사한 다음 문제에서 재사용하도록 설계했습니다.</p>
+                        <p>즉, Protoform은 “왜 나왔는가”에 대해 명확히 말하면, 파인튜닝 없이도 누적 실패 경험을 운영 지식으로 전환하기 위한 경량 학습 장치입니다. 이 방식으로 반복 오류를 줄이고, 추론 안정성을 점진적으로 높였습니다.</p>
                         <h3>성과</h3>
                         <p>실패 기반 재사용을 위한 Protoform memory 도입 및 토픽별 정확도 트래킹 구현</p>
                         <div class="tag-row">
-                            <span class="pill">MAS</span>
-                            <span class="pill">VQA</span>
-                            <span class="pill">ChartX</span>
-                            <span class="pill">Memory</span>
+                            <span class="pill">Multi-Agent System</span>
+                            <span class="pill">Self-Refine</span>
+                            <span class="pill">Verification</span>
+                            <span class="pill">Protoform</span>
                         </div>
                     </div>
                 </div>
@@ -294,16 +301,21 @@
                     </div>
                     <div class="project-side reveal">
                         <h3>문제 정의</h3>
-                        <p>test</p>
+                        <p>금융 분야의 AI 예측은 여전히 단일 프롬프트에 다양한 데이터를 병렬로 투입하는 방식이 많아, 데이터의 우선순위와 사용 순서가 구조적으로 반영되지 않는 한계가 있습니다.</p>
+                        <p>그 결과 시장·섹터·종목 간 맥락 연결이 약해지고, 예측 근거의 일관성과 해석 가능성이 떨어집니다.</p>
+                        <p>즉, 인간 트레이더의 분석 흐름(거시→업종→종목)과 달리, 기존 접근은 단계적 정보 선별과 맥락 고정 기반 추론이 부족합니다.</p>
                         <h3>해결 전략</h3>
-                        <p>test</p>
+                        <p>본 연구는 금융 예측을 단일 프롬프트가 아닌 **계층형 추론 아키텍처(Market → Sector → Stock)**로 설계해, 데이터의 우선순위와 사용 순서를 강제했습니다.</p>
+                        <p>시장 단계에서는 QQQ·거시지표·미국 뉴스, 섹터 단계에서는 섹터 ETF와 상대 성과, 종목 단계에서는 개별 OHLCV와 종목 뉴스만 사용해 단계별 입력 범위를 명확히 분리했습니다.</p>
+                        <p>또한 각 단계의 판단이 상위 단계 맥락을 반드시 조건으로 받도록 구성해, 인간 트레이더의 분석 흐름(거시→업종→종목)을 모델 추론에 반영했습니다.</p>
+                        <p>마지막으로 상하위 판단이 충돌할 때만 추가 도구(상관/상대강도/피어비교/모멘텀/거래량)를 호출하는 Conflict-based Tool Augmentation을 적용해, 불확실 구간에 계산을 집중하도록 최적화했습니다.</p>
                         <h3>성과</h3>
                         <p>Rule-based 베이스라인 대비 수익률 및 Sharpe ratio 성과 검증</p>
                         <div class="tag-row">
-                            <span class="pill">LLM Trading</span>
-                            <span class="pill">Backtest</span>
-                            <span class="pill">Sharpe</span>
-                            <span class="pill">Reasoning</span>
+                            <span class="pill">Hierarchical CoT</span>
+                            <span class="pill">Contextual Inference</span>
+                            <span class="pill">Conflict-Aware Tools</span>
+                            <span class="pill">Backtesting</span>
                         </div>
                     </div>
                 </div>
@@ -322,9 +334,10 @@
                     </div>
                     <div class="project-side reveal">
                         <h3>문제 정의</h3>
-                        <p>test</p>
+                        <p>주식시장의 sector rotationdms 수많은 복잡한 변수들로 결정되기에 다양한 상황에, 기간별로 달라지는 인과관계 설명할 수 없음 + 보통은 인과관계가 아니라 상관관계로 나타냄</p>
                         <h3>해결 전략</h3>
-                        <p>test</p>
+                        <p>sliding rolling window로 데이터셋을 구성해서 각 기간마다의 dynamic한 인과관계를 학습하고자함</p>
+                        <p>directional graph의 구성으로 인과과나계를 설명하고자함</p>
                         <h3>성과</h3>
                         <p>클래스 불균형 문제를 해결한 엔드투엔드 학습 파이프라인 구축</p>
                         <div class="tag-row">
