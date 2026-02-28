@@ -275,8 +275,6 @@
                         <p>이후 Verifier 단계에서 독립 추출(teacher)과 현재 추출 결과를 비교해 충분성(Yes/No)을 판정하고, 실패 시에만 보정 루프를 실행합니다.</p>
                         <p>여기서 핵심은 반복 실패를 일회성 수정으로 끝내지 않고, 실패 패턴을 재사용 가능한 규칙으로 축적하는 것입니다. 이를 위해 오류 유형과 보정 지시문을 Protoform으로 정의하고 메모리에 저장해, 유사한 다음 문제에서 재사용하도록 설계했습니다.</p>
                         <p>즉, Protoform은 “왜 나왔는가”에 대해 명확히 말하면, 파인튜닝 없이도 누적 실패 경험을 운영 지식으로 전환하기 위한 경량 학습 장치입니다. 이 방식으로 반복 오류를 줄이고, 추론 안정성을 점진적으로 높였습니다.</p>
-                        <h3>성과</h3>
-                        <p>실패 기반 재사용을 위한 Protoform memory 도입 및 토픽별 정확도 트래킹 구현</p>
                         <div class="tag-row">
                             <span class="pill">Multi-Agent System</span>
                             <span class="pill">Self-Refine</span>
@@ -309,8 +307,6 @@
                         <p>시장 단계에서는 QQQ·거시지표·미국 뉴스, 섹터 단계에서는 섹터 ETF와 상대 성과, 종목 단계에서는 개별 OHLCV와 종목 뉴스만 사용해 단계별 입력 범위를 명확히 분리했습니다.</p>
                         <p>또한 각 단계의 판단이 상위 단계 맥락을 반드시 조건으로 받도록 구성해, 인간 트레이더의 분석 흐름(거시→업종→종목)을 모델 추론에 반영했습니다.</p>
                         <p>마지막으로 상하위 판단이 충돌할 때만 추가 도구(상관/상대강도/피어비교/모멘텀/거래량)를 호출하는 Conflict-based Tool Augmentation을 적용해, 불확실 구간에 계산을 집중하도록 최적화했습니다.</p>
-                        <h3>성과</h3>
-                        <p>Rule-based 베이스라인 대비 수익률 및 Sharpe ratio 성과 검증</p>
                         <div class="tag-row">
                             <span class="pill">Hierarchical CoT</span>
                             <span class="pill">Contextual Inference</span>
