@@ -927,11 +927,17 @@ body {
 .project-bullet-list {
     margin: 0;
     padding-left: 1.05rem;
+    list-style-type: disc;
+    list-style-position: outside;
     color: #d9e2f6;
     font-size: 0.94rem;
     line-height: 1.55;
     display: grid;
     gap: 6px;
+}
+
+.project-bullet-list li {
+    display: list-item;
 }
 
 .project-bullet-list li::marker {
