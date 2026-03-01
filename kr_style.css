@@ -905,14 +905,37 @@ body {
     margin-top: 8px;
 }
 
+.project-side h3 + .project-bullet-list {
+    margin-top: 8px;
+}
+
 .project-side p + h3 {
+    margin-top: 20px;
+}
+
+.project-side .project-bullet-list + h3 {
     margin-top: 20px;
 }
 
 .project-side p {
     margin: 0;
     color: #d9e2f6;
-    line-height: 1.65;
+    line-height: 1.55;
+    font-size: 0.94rem;
+}
+
+.project-bullet-list {
+    margin: 0;
+    padding-left: 1.05rem;
+    color: #d9e2f6;
+    font-size: 0.94rem;
+    line-height: 1.55;
+    display: grid;
+    gap: 6px;
+}
+
+.project-bullet-list li::marker {
+    color: var(--accent);
 }
 
 .tag-row {

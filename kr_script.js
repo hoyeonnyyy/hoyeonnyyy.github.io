@@ -90,6 +90,74 @@
         });
     }
 
+    function toSentenceList(text) {
+        var normalized = (text || "").replace(/\s+/g, " ").trim();
+        var matches;
+
+        if (!normalized) {
+            return [];
+        }
+
+        matches = normalized.match(/[^.!?]+[.!?]?/g);
+
+        if (!matches) {
+            return [normalized];
+        }
+
+        return matches
+            .map(function (line) {
+                return line.trim();
+            })
+            .filter(function (line) {
+                return line.length > 0;
+            });
+    }
+
+    function bulletizeProjectDetails() {
+        var sections = Array.prototype.slice.call(document.querySelectorAll(".slide-4 .project-side, .slide-5 .project-side, .slide-6 .project-side, .slide-7 .project-side"));
+
+        sections.forEach(function (section) {
+            if (section.getAttribute("data-bulleted") === "true") {
+                return;
+            }
+
+            var headings = Array.prototype.slice.call(section.querySelectorAll("h3"));
+
+            headings.forEach(function (heading) {
+                var cursor = heading.nextElementSibling;
+                var paragraphNodes = [];
+                var sentences = [];
+                var list;
+
+                while (cursor && cursor.tagName === "P") {
+                    paragraphNodes.push(cursor);
+                    sentences = sentences.concat(toSentenceList(cursor.textContent || ""));
+                    cursor = cursor.nextElementSibling;
+                }
+
+                if (!paragraphNodes.length || !sentences.length) {
+                    return;
+                }
+
+                list = document.createElement("ul");
+                list.className = "project-bullet-list";
+
+                sentences.forEach(function (sentence) {
+                    var item = document.createElement("li");
+                    item.textContent = sentence;
+                    list.appendChild(item);
+                });
+
+                section.insertBefore(list, paragraphNodes[0]);
+                paragraphNodes.forEach(function (node) {
+                    node.remove();
+                });
+            });
+
+            section.setAttribute("data-bulleted", "true");
+        });
+    }
+
     function setActiveSlide(index) {
         slides.forEach(function (slide, i) {
             slide.classList.toggle("is-active", i === index);
@@ -231,6 +299,7 @@
 
     function init() {
         setViewportUnit();
+        bulletizeProjectDetails();
         alignTimelineHonors();
         fitProjectTitles();
         setActiveSlide(0);
