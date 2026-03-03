@@ -974,6 +974,14 @@ body {
     max-width: none;
 }
 
+.outro-main .eyebrow + .outro-copy {
+    margin-top: 24px;
+}
+
+.outro-main .outro-copy + .outro-copy {
+    margin-top: 28px;
+}
+
 .outro-line {
     display: block;
 }
