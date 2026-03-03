@@ -974,6 +974,14 @@ body {
     max-width: 50ch;
 }
 
+.outro-line {
+    display: block;
+}
+
+.outro-line + .outro-line {
+    margin-top: 0.45rem;
+}
+
 .highlight-card {
     margin-top: 18px;
     padding: 14px;
