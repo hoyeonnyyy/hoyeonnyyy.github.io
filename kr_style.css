@@ -982,6 +982,10 @@ body {
     margin-top: 34px;
 }
 
+.outro-main .outro-copy + .eyebrow {
+    margin-top: 34px;
+}
+
 .outro-line {
     display: block;
 }
