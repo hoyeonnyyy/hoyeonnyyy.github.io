@@ -364,7 +364,8 @@
                         <p>기존 지도학습 모델은 소수 레이블 데이터에만 의존해 불균형 클래스에서 학습이 편향되고, 방대한 Unlabeled 데이터는 활용되지 못한 채 버려집니다.</p>
                         <p>결과적으로 제한된 데이터 환경에서 신뢰할 수 있는 분류 성능을 확보하기 어렵습니다.</p>
                         <h3>해결 전략</h3>
-                        <p>Labeled 데이터 경로에서는 Convolutional AutoEncoder로 소수 클래스 패턴을 학습·생성해 클래스 불균형을 해소하고, Unlabeled 데이터 경로에서는 FixMatch의 Weak/Strong Augmentation 기반 Consistency Training으로 미레이블 데이터를 학습에 편입했습니다.</p>
+                        <p>Labeled 데이터 경로에서는 Convolutional AutoEncoder로 소수 클래스 패턴을 학습·생성해 클래스 불균형을 해소합니다</p>
+                        <p>Unlabeled 데이터 경로에서는 FixMatch의 Weak/Strong Augmentation 기반 Consistency Training으로 레이블링 안된 데이터를 학습에 편입했습니다.</p>
                         <p>여기에 DARP를 추가 적용해 편향된 Pseudo-label이 모델 학습을 오염시키는 FixMatch의 구조적 한계를 보정함으로써, 제한된 데이터 환경에서도 안정적인 분류 성능을 확보했습니다.</p>
                         <div class="tag-row">
                             <span class="pill">Data Imbalance</span>
