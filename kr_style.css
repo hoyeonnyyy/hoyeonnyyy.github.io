@@ -971,7 +971,7 @@ body {
     margin: 14px 0 0;
     color: #dbe4f8;
     line-height: 1.75;
-    max-width: 50ch;
+    max-width: none;
 }
 
 .outro-line {
