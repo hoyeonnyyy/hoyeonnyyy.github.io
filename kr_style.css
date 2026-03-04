@@ -899,6 +899,7 @@ body {
 .project-side h3 {
     margin: 0;
     font-size: 1.1rem;
+    color: var(--accent-3);
 }
 
 .project-side h3 + p {
@@ -1027,6 +1028,7 @@ body {
 .outro-cta h3 {
     margin: 0;
     font-size: 1.1rem;
+    color: var(--accent-3);
 }
 
 .outro-skill-group + .outro-skill-group {
