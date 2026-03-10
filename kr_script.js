@@ -114,7 +114,7 @@
     }
 
     function bulletizeProjectDetails() {
-        var sections = Array.prototype.slice.call(document.querySelectorAll(".slide-4 .project-side, .slide-5 .project-side, .slide-6 .project-side, .slide-7 .project-side"));
+        var sections = Array.prototype.slice.call(document.querySelectorAll('section[data-slide-title^="Project"] .project-side'));
 
         sections.forEach(function (section) {
             if (section.getAttribute("data-bulleted") === "true") {
