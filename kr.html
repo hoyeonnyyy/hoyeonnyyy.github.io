@@ -412,26 +412,25 @@
                 <div class="slide-inner project-layout">
                     <div class="project-main reveal">
                         <p class="eyebrow">실무 프로젝트 2</p>
-                        <h2 class="hero-title">Semiconductor Wafer Defect Pattern Detection</h2>
+                        <h2 class="hero-title">For Natural Dialect, TAT</h2>
                         <p class="project-affiliation">SK Telecom</p>
-                        <p class="project-body">클래스 불균형과 레이블 부족을 동시에 다루는 반도체 웨이퍼 결함 분류 파이프라인 구축</p>
+                        <p class="project-body">사라져가는 제주 방언을 보다 자연스럽고 친숙한 음성 콘텐츠로 복원하기 위해, 영상 속 사투리 발화를 재생성하는 음성 AI 프로젝트</p>
                         <div class="project-visual-wrap" aria-label="Project 6 visualization">
-                            <img src="4-1.png" alt="Project 6 architecture visualization" class="project-visual">
+                            <img src="6-1.png" alt="Project 6 architecture visualization" class="project-visual">
                         </div>
                     </div>
                     <div class="project-side reveal">
                         <h3>문제 정의</h3>
-                        <p>반도체 웨이퍼 결함 분류는 수율 향상의 핵심 과제임에도, 실제 현장 데이터는 정상·불량 간 극심한 클래스 불균형과 절대적인 레이블 부족이라는 이중 제약을 동시에 가집니다.</p>
-                        <p>기존 지도학습 모델은 소수 레이블 데이터에만 의존해 불균형 클래스에서 학습이 편향되고, 방대한 Unlabeled 데이터는 활용되지 못한 채 버려집니다.</p>
-                        <p>결과적으로 제한된 데이터 환경에서 신뢰할 수 있는 분류 성능을 확보하기 어렵습니다.</p>
+                        <p>제주 방언은 지역의 문화와 정체성을 담은 소중한 자산이지만, 사용이 줄어들며 점차 사라지고 있어 사회적 가치의 관점에서 보존 필요성이 커지고 있습니다.</p>
+                        <p>하지만 영상 속 부자연스러운 방언을 자연스럽게 변환하려면, 복합 음성 환경과 제한된 방언 데이터 속에서도 의미, 제주 특유의 억양, 화자 고유의 음색을 함께 살려야 하는 기술적 어려움이 있었습니다.</p>
                         <h3>해결 전략</h3>
-                        <p>Labeled 데이터 경로에서는 Convolutional AutoEncoder로 소수 클래스 패턴을 학습·생성해 클래스 불균형을 해소했습니다.</p>
-                        <p>Unlabeled 데이터 경로에서는 FixMatch의 Weak/Strong Augmentation 기반 Consistency Training으로 레이블링 안된 데이터를 학습에 편입했습니다.</p>
-                        <p>여기에 DARP를 추가 적용해 편향된 Pseudo-label이 모델 학습을 오염시키는 FixMatch의 구조적 한계를 보정함으로써, 제한된 데이터 환경에서도 안정적인 분류 성능을 확보했습니다.</p>
+                        <p>Demucs를 적용해 원본 영상에서 음성과 BGM을 분리하고, 후속 모델이 음성 신호에 집중할 수 있는 전처리 경로를 구성했습니다.</p>
+                        <p>AIHub 제주어 발화 데이터셋을 30초 단위 기준으로 분할·병합하고 특수문자 라벨을 정제한 뒤, 16kHz 샘플링 및 log-Mel 변환을 거쳐 Whisper STT 파인튜닝을 수행했습니다.</p>
+                        <p>카카오 JJS(Jejueo Single Speaker Speech) 데이터셋 전처리 후 JK-VITS를 파인튜닝해 제주 방언 억양을 반영한 TTS 출력을 생성했습니다.</p>
+                        <p>마지막으로 LVC-VC 기반 음성 변환으로 생성 음성에 원화자 톤을 이식하고, 분리했던 BGM을 재결합해 최종 영상을 완성했습니다.</p>
                         <div class="tag-row">
-                            <span class="pill">Data Imbalance</span>
-                            <span class="pill">Semi-Supervised</span>
-                            <span class="pill">Manufacture Automation</span>
+                            <span class="pill">Speech Pipeline Integration</span>
+                            <span class="pill">Culture ESG</span>
                         </div>
                     </div>
                 </div>
