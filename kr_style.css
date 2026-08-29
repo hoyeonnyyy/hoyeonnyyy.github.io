@@ -269,8 +269,9 @@ body {
 .cover-grid {
     display: grid;
     grid-template-columns: 1fr;
-    grid-template-rows: auto 1fr auto;
-    gap: 18px;
+    grid-template-rows: auto auto auto;
+    align-content: center;
+    gap: clamp(18px, 3vh, 40px);
     align-items: stretch;
     height: 100%;
 }
