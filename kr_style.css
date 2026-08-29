@@ -479,12 +479,13 @@ body {
     grid-template-columns: minmax(300px, 1.15fr) minmax(0, 1.85fr);
     gap: 20px;
     align-items: start;
+    align-content: center;
 }
 
 .identity-left-wrap {
     display: grid;
     gap: 12px;
-    align-self: stretch;
+    align-self: start;
     padding-top: 10px;
     justify-items: stretch;
 }
@@ -532,10 +533,9 @@ body {
 }
 
 .identity-panel-right {
-    min-height: calc(100% - 4px);
     display: grid;
-    grid-template-rows: auto 1fr;
-    align-content: stretch;
+    grid-template-rows: auto auto;
+    align-content: start;
 }
 
 .identity-panel .eyebrow {
@@ -568,8 +568,7 @@ body {
 .capability-list {
     display: grid;
     gap: 12px;
-    grid-template-rows: repeat(5, minmax(0, 1fr));
-    min-height: 100%;
+    grid-template-rows: repeat(5, auto);
 }
 
 .capability-item {
@@ -841,7 +840,8 @@ body {
     display: grid;
     grid-template-columns: 1.2fr 0.8fr;
     gap: 20px;
-    align-items: stretch;
+    align-items: start;
+    align-content: center;
 }
 
 .project-main,
@@ -967,6 +967,8 @@ body {
     display: grid;
     grid-template-columns: 1.25fr 0.75fr;
     gap: 20px;
+    align-items: start;
+    align-content: center;
 }
 
 .outro-copy {
