@@ -476,7 +476,7 @@ body {
 }
 
 .identity-layout {
-    grid-template-columns: minmax(300px, 1.15fr) minmax(0, 1.85fr);
+    grid-template-columns: minmax(240px, 300px) 1fr;
     gap: 20px;
     align-items: start;
     align-content: center;
@@ -487,7 +487,7 @@ body {
     gap: 12px;
     align-self: start;
     padding-top: 10px;
-    justify-items: stretch;
+    justify-items: center;
 }
 
 .identity-photo-card {
@@ -526,16 +526,9 @@ body {
     padding: 22px 20px;
 }
 
-.identity-panel-left {
-    min-height: 0;
+.identity-panel-right {
     padding-top: 18px;
     padding-bottom: 18px;
-}
-
-.identity-panel-right {
-    display: grid;
-    grid-template-rows: auto auto;
-    align-content: start;
 }
 
 .identity-panel .eyebrow {
@@ -563,42 +556,6 @@ body {
 
 .identity-block p + p {
     margin-top: 6px;
-}
-
-.capability-list {
-    display: grid;
-    gap: 12px;
-    grid-template-rows: repeat(5, auto);
-}
-
-.capability-item {
-    display: grid;
-    align-content: center;
-    border-radius: 16px;
-    border: 1px solid rgba(255, 255, 255, 0.06);
-    background: rgba(255, 255, 255, 0.015);
-    padding: 12px 14px;
-    min-height: 0;
-}
-
-.capability-item + .capability-item {
-    margin-top: 0;
-}
-
-.capability-title {
-    margin: 0;
-    color: #f2f7ff;
-    font-size: 1rem;
-    line-height: 1.25;
-    letter-spacing: -0.01em;
-    font-weight: 700;
-}
-
-.capability-body {
-    margin: 7px 0 0;
-    color: #cfdaf0;
-    font-size: 0.95rem;
-    line-height: 1.5;
 }
 
 .stack-block + .stack-block {
@@ -1173,11 +1130,6 @@ body {
         max-width: 280px;
     }
 
-    .identity-panel-right {
-        min-height: 0;
-        grid-template-rows: none;
-    }
-
     .timeline-grid {
         grid-template-columns: repeat(2, minmax(0, 1fr));
         --timeline-gap: 14px;
@@ -1311,26 +1263,13 @@ body {
         margin-top: 14px;
     }
 
-    .identity-block-title,
-    .capability-title {
+    .identity-block-title {
         font-size: 0.9rem;
     }
 
-    .identity-block p,
-    .capability-body {
+    .identity-block p {
         font-size: 0.82rem;
         line-height: 1.42;
-    }
-
-    .capability-list {
-        gap: 10px;
-        grid-template-rows: none;
-        min-height: 0;
-    }
-
-    .capability-item {
-        border-radius: 12px;
-        padding: 11px 10px 10px;
     }
 
     .cover-keyword-card {
