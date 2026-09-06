@@ -476,7 +476,8 @@ body {
 }
 
 .identity-layout {
-    grid-template-columns: minmax(312px, 390px) 1fr;
+    grid-template-columns: minmax(260px, 300px) minmax(0, 500px);
+    justify-content: center;
     gap: 20px;
     align-items: start;
     align-content: center;
@@ -489,7 +490,7 @@ body {
 }
 
 .identity-photo-card {
-    width: min(100%, 312px);
+    width: min(100%, 280px);
     justify-self: center;
     border-radius: 22px;
     border: 1px solid rgba(255, 255, 255, 0.08);
@@ -505,7 +506,7 @@ body {
     display: block;
     width: 100%;
     aspect-ratio: 3 / 4;
-    max-height: 416px;
+    max-height: 374px;
     object-fit: cover;
     object-position: center top;
     border-radius: 14px;
@@ -525,8 +526,6 @@ body {
 }
 
 .identity-panel-right {
-    max-width: 520px;
-    justify-self: start;
     padding-top: 18px;
     padding-bottom: 18px;
 }
