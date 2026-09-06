@@ -478,15 +478,13 @@ body {
 .identity-layout {
     grid-template-columns: minmax(240px, 300px) 1fr;
     gap: 20px;
-    align-items: start;
+    align-items: center;
     align-content: center;
 }
 
 .identity-left-wrap {
     display: grid;
     gap: 12px;
-    align-self: start;
-    padding-top: 10px;
     justify-items: center;
 }
 
@@ -532,11 +530,14 @@ body {
 }
 
 .identity-panel .eyebrow {
-    margin-bottom: 12px;
+    margin-bottom: 16px;
+    font-size: 1.6rem;
+    font-weight: 800;
+    letter-spacing: 0.02em;
 }
 
 .identity-block + .identity-block {
-    margin-top: 18px;
+    margin-top: 38px;
 }
 
 .identity-block-title {
