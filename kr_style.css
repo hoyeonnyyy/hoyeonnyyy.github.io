@@ -698,11 +698,12 @@ body {
 .timeline-note-1 { left: calc(var(--timeline-col) + (var(--timeline-gap) / 2)); }
 .timeline-note-2 { left: calc(var(--timeline-col) + var(--timeline-col) + var(--timeline-gap) + (var(--timeline-gap) / 2)); }
 .timeline-note-3 { left: calc(var(--timeline-col) + var(--timeline-col) + var(--timeline-col) + var(--timeline-gap) + var(--timeline-gap) + (var(--timeline-gap) / 2)); }
-.timeline-note-logo { left: 96%; }
-
 .timeline-note-logo {
+    /* exception: this note isn't bound by the other notes' text-box sizing */
+    left: 93%;
     min-width: 0;
-    padding: 10px 16px;
+    max-width: none;
+    padding: 12px 18px;
     background: #ffffff;
     border-color: rgba(255, 255, 255, 0.85);
     box-shadow:
@@ -713,8 +714,8 @@ body {
 
 .timeline-note-logo-img {
     display: block;
-    width: 92px;
-    height: auto;
+    width: auto;
+    height: 40px;
 }
 
 .timeline-point {
