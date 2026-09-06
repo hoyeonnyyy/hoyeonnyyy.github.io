@@ -698,6 +698,24 @@ body {
 .timeline-note-1 { left: calc(var(--timeline-col) + (var(--timeline-gap) / 2)); }
 .timeline-note-2 { left: calc(var(--timeline-col) + var(--timeline-col) + var(--timeline-gap) + (var(--timeline-gap) / 2)); }
 .timeline-note-3 { left: calc(var(--timeline-col) + var(--timeline-col) + var(--timeline-col) + var(--timeline-gap) + var(--timeline-gap) + (var(--timeline-gap) / 2)); }
+.timeline-note-logo { left: 96%; }
+
+.timeline-note-logo {
+    min-width: 0;
+    padding: 10px 16px;
+    background: #ffffff;
+    border-color: rgba(255, 255, 255, 0.85);
+    box-shadow:
+        0 14px 28px rgba(3, 6, 14, 0.34),
+        0 0 0 1px rgba(255, 255, 255, 0.18),
+        inset 0 1px 0 rgba(255, 255, 255, 0.6);
+}
+
+.timeline-note-logo-img {
+    display: block;
+    width: 92px;
+    height: auto;
+}
 
 .timeline-point {
     display: none;
