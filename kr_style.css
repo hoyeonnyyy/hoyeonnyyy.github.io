@@ -531,7 +531,7 @@ body {
 
 .identity-panel .eyebrow {
     margin-bottom: 16px;
-    font-size: 1.6rem;
+    font-size: 1.4rem;
     font-weight: 800;
     letter-spacing: 0.02em;
 }
@@ -595,6 +595,12 @@ body {
     font-weight: 600;
     padding: 0.4rem 0.75rem;
     line-height: 1.1;
+}
+
+.slide-3 .slide-inner {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
 }
 
 .timeline-grid {
