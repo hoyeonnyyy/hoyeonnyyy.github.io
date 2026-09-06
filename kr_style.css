@@ -702,7 +702,7 @@ body {
 .timeline-note-logo {
     /* exception: this note isn't bound by the other notes' text-box sizing */
     left: 96%;
-    width: 210px;
+    width: 180px;
     min-width: 0;
     max-width: none;
     padding: 12px 18px;
