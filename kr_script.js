@@ -8,12 +8,12 @@
     var progressFill = document.getElementById("progressFill");
     var slideCounter = document.getElementById("slideCounter");
     var horizontalTween = null;
-    // Layout follows viewport width; navigation follows the primary input device.
+    // Touch devices use one continuous vertical document.
     var mobileQuery = window.matchMedia("(hover: none) and (pointer: coarse)");
     var compactQuery = window.matchMedia("(max-width: 1200px)");
     var activeIndex = 0;
-    var scrollHint = document.querySelector(".scroll-hint span");
-    var desktopHint = scrollHint ? scrollHint.textContent : "";
+    var verticalLayout = false;
+    var progressFramePending = false;
 
     function setViewportUnit() {
         var vh = window.innerHeight * 0.01;
@@ -161,9 +161,9 @@
 
     function scrollToSlide(index) {
         var targetIndex = clamp(index, 0, slides.length - 1);
-        if (mobileQuery.matches) {
-            track.scrollTo({
-                left: slides[targetIndex].offsetLeft,
+        if (verticalLayout) {
+            window.scrollTo({
+                top: slides[targetIndex].getBoundingClientRect().top + window.scrollY,
                 behavior: window.matchMedia("(prefers-reduced-motion: reduce)").matches ? "auto" : "smooth"
             });
             return;
@@ -202,8 +202,8 @@
                 return;
             }
 
-            // Keep vertical keys available for reading the current mobile slide.
-            if (mobileQuery.matches && event.key !== "ArrowLeft" && event.key !== "ArrowRight") {
+            // Keep native vertical reading keys in the continuous document.
+            if (verticalLayout && event.key !== "ArrowLeft" && event.key !== "ArrowRight") {
                 return;
             }
 
@@ -248,7 +248,8 @@
 
     function initGsapHorizontalScroll() {
         if (!window.gsap || !window.ScrollTrigger || !shell || !track || slides.length === 0) {
-            document.body.classList.add("no-gsap");
+            verticalLayout = true;
+            document.body.classList.add("vertical-deck");
             setActiveSlide(0);
             return;
         }
@@ -301,11 +302,30 @@
         ScrollTrigger.refresh();
     }
 
-    function syncMobileProgress() {
-        if (!mobileQuery.matches || !track.clientWidth) {
+    function syncVerticalProgress() {
+        if (!verticalLayout) {
             return;
         }
-        updateProgress(track.scrollLeft / Math.max(track.scrollWidth - track.clientWidth, 1));
+
+        var index = 0;
+        var readingLine = window.innerHeight * 0.35;
+        slides.forEach(function (slide, i) {
+            if (slide.getBoundingClientRect().top <= readingLine) {
+                index = i;
+            }
+        });
+        updateProgress(index / Math.max(slides.length - 1, 1));
+    }
+
+    function scheduleVerticalProgress() {
+        if (!verticalLayout || progressFramePending) {
+            return;
+        }
+        progressFramePending = true;
+        window.requestAnimationFrame(function () {
+            progressFramePending = false;
+            syncVerticalProgress();
+        });
     }
 
     function setNavigationMode() {
@@ -320,20 +340,15 @@
             ScrollTrigger.removeEventListener("refresh", alignTimelineHonors);
         }
 
-        document.body.classList.remove("no-gsap");
-        document.body.classList.toggle("mobile-deck", mobileQuery.matches);
-        if (scrollHint) {
-            scrollHint.textContent = mobileQuery.matches ? "좌우로 넘기고, 위아래로 읽어보세요" : desktopHint;
-        }
+        verticalLayout = mobileQuery.matches || !window.gsap || !window.ScrollTrigger;
+        document.body.classList.toggle("vertical-deck", verticalLayout);
 
         setViewportUnit();
         alignTimelineHonors();
-        if (mobileQuery.matches) {
-            window.scrollTo(0, 0);
-            track.scrollLeft = slides[index].offsetLeft;
-            syncMobileProgress();
+        if (verticalLayout) {
+            window.scrollTo(0, slides[index].getBoundingClientRect().top + window.scrollY);
+            syncVerticalProgress();
         } else {
-            track.scrollLeft = 0;
             initGsapHorizontalScroll();
             if (horizontalTween) {
                 var st = horizontalTween.scrollTrigger;
@@ -350,21 +365,21 @@
         updateProgress(0);
         bindDotEvents();
         bindKeyboardEvents();
-        track.addEventListener("scroll", syncMobileProgress, { passive: true });
+        window.addEventListener("scroll", scheduleVerticalProgress, { passive: true });
         mobileQuery.addEventListener("change", setNavigationMode);
         setNavigationMode();
         window.addEventListener("resize", function () {
             setViewportUnit();
             alignTimelineHonors();
-            if (mobileQuery.matches) {
-                // Keep the same slide aligned after rotation or viewport resizing.
-                track.scrollLeft = slides[activeIndex].offsetLeft;
-            }
+            syncVerticalProgress();
         });
         window.requestAnimationFrame(alignTimelineHonors);
 
         if (document.fonts && document.fonts.ready) {
-            document.fonts.ready.then(alignTimelineHonors);
+            document.fonts.ready.then(function () {
+                alignTimelineHonors();
+                syncVerticalProgress();
+            });
         }
     }
 
