@@ -696,6 +696,10 @@ body {
     display: block;
 }
 
+.timeline-note .timeline-note-label {
+    display: none;
+}
+
 .timeline-note-1 { left: calc(var(--timeline-col) + (var(--timeline-gap) / 2)); }
 .timeline-note-2 { left: calc(var(--timeline-col) + var(--timeline-col) + var(--timeline-gap) + (var(--timeline-gap) / 2)); }
 .timeline-note-3 { left: calc(var(--timeline-col) + var(--timeline-col) + var(--timeline-col) + var(--timeline-gap) + var(--timeline-gap) + (var(--timeline-gap) / 2)); }
@@ -1160,7 +1164,7 @@ body {
     }
 
     .timeline-grid {
-        grid-template-columns: repeat(2, minmax(0, 1fr));
+        grid-template-columns: minmax(0, 1fr);
         --timeline-gap: 14px;
         padding-top: 0;
         margin-top: 22px;
@@ -1171,8 +1175,60 @@ body {
         display: none;
     }
 
-    .timeline-note {
+    .timeline-grid .timeline-note {
+        position: relative;
+        top: auto;
+        left: auto;
+        display: flex;
+        align-items: center;
+        gap: 12px;
+        width: calc(100% - 24px);
+        min-width: 0;
+        max-width: none;
+        margin: 0 auto;
+        padding: 14px 16px;
+        border-radius: 12px;
+        border-left: 3px solid var(--accent);
+        background: rgba(125, 211, 252, 0.06);
+        box-shadow: none;
+        text-align: left;
+        line-height: 1.5;
+    }
+
+    .timeline-grid .timeline-note.reveal,
+    .slide.is-active .timeline-grid .timeline-note.reveal {
+        transform: none;
+    }
+
+    .timeline-grid .timeline-note::before,
+    .timeline-grid .timeline-note::after {
         display: none;
+    }
+
+    .timeline-note .timeline-note-label {
+        display: block;
+        flex: 0 0 auto;
+        color: var(--accent);
+        font-size: 0.72rem;
+        font-weight: 800;
+    }
+
+    .timeline-grid .timeline-note-logo {
+        border-color: rgba(52, 211, 153, 0.28);
+        border-left-color: var(--accent-3);
+        background: rgba(52, 211, 153, 0.06);
+    }
+
+    .timeline-note-logo .timeline-note-label {
+        color: var(--accent-3);
+    }
+
+    .timeline-note-logo-img {
+        width: 100px;
+        max-width: 100%;
+        padding: 9px 12px;
+        border-radius: 8px;
+        background: #ffffff;
     }
 
     .timeline-point {

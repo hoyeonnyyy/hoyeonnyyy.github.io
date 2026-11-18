@@ -77,6 +77,13 @@
         var cards = Array.prototype.slice.call(grid.querySelectorAll(".timeline-card"));
         var notes = Array.prototype.slice.call(grid.querySelectorAll(".timeline-note"));
 
+        if (mobileQuery.matches) {
+            notes.forEach(function (note) {
+                note.style.removeProperty("left");
+            });
+            return;
+        }
+
         if (cards.length < 4 || notes.length < 3) {
             return;
         }
