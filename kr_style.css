@@ -1330,33 +1330,41 @@ body {
         padding: 72px 0 106px;
     }
 
+    .cover-grid {
+        gap: 20px;
+    }
+
     .cover-title {
         font-size: clamp(1.28rem, 6vw, 1.85rem);
-        line-height: 1.18;
+        line-height: 1.42;
         max-width: none;
         white-space: normal;
     }
 
     .cover-copy {
-        padding: 18px 16px 16px;
+        padding: 22px 18px;
         border-radius: 18px;
     }
 
     .cover-kicker {
-        margin-bottom: 8px;
+        margin-bottom: 12px;
         font-size: 0.68rem;
         letter-spacing: 0.09em;
     }
 
     .cover-lead {
-        margin-top: 10px;
-        padding-top: 10px;
+        margin-top: 14px;
+        padding-top: 14px;
         font-size: 0.82rem;
-        line-height: 1.5;
+        line-height: 1.75;
+    }
+
+    .cover-lead-line + .cover-lead-line {
+        margin-top: 12px;
     }
 
     .cover-keyword-grid {
-        gap: 10px;
+        gap: 14px;
         grid-template-columns: minmax(0, 1fr);
     }
 
@@ -1390,7 +1398,7 @@ body {
 
     .cover-keyword-card {
         min-height: 0;
-        padding: 14px 12px 12px;
+        padding: 18px 16px;
         border-radius: 14px;
     }
 
@@ -1416,13 +1424,13 @@ body {
 
     .keyword-title {
         font-size: 0.92rem;
-        line-height: 1.35;
+        line-height: 1.5;
     }
 
     .keyword-body {
-        margin-top: 7px;
+        margin-top: 10px;
         font-size: 0.8rem;
-        line-height: 1.45;
+        line-height: 1.75;
     }
 
     .scroll-hint {
