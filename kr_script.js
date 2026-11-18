@@ -8,7 +8,9 @@
     var progressFill = document.getElementById("progressFill");
     var slideCounter = document.getElementById("slideCounter");
     var horizontalTween = null;
-    var mobileQuery = window.matchMedia("(max-width: 1080px)");
+    // Layout follows viewport width; navigation follows the primary input device.
+    var mobileQuery = window.matchMedia("(hover: none) and (pointer: coarse)");
+    var compactQuery = window.matchMedia("(max-width: 1200px)");
     var activeIndex = 0;
     var scrollHint = document.querySelector(".scroll-hint span");
     var desktopHint = scrollHint ? scrollHint.textContent : "";
@@ -22,51 +24,6 @@
         return Math.min(Math.max(value, min), max);
     }
 
-    function fitProjectTitles() {
-        var titles = Array.prototype.slice.call(document.querySelectorAll(".project-layout .hero-title"));
-
-        titles.forEach(function (title) {
-            if (mobileQuery.matches) {
-                title.style.removeProperty("font-size");
-                return;
-            }
-            if (!title.clientWidth) {
-                return;
-            }
-
-            var computedSize = parseFloat(window.getComputedStyle(title).fontSize);
-            var maxSize = Number(title.getAttribute("data-fit-max-size")) || computedSize;
-            var minSize = 12;
-            var low = minSize;
-            var high = Math.max(maxSize, minSize);
-            var mid = high;
-            var i = 0;
-
-            if (!title.hasAttribute("data-fit-max-size")) {
-                title.setAttribute("data-fit-max-size", String(maxSize));
-            }
-
-            title.style.fontSize = maxSize + "px";
-
-            if (title.scrollWidth <= title.clientWidth) {
-                return;
-            }
-
-            for (i = 0; i < 14; i += 1) {
-                mid = (low + high) / 2;
-                title.style.fontSize = mid + "px";
-
-                if (title.scrollWidth <= title.clientWidth) {
-                    low = mid;
-                } else {
-                    high = mid;
-                }
-            }
-
-            title.style.fontSize = low + "px";
-        });
-    }
-
     function alignTimelineHonors() {
         var grid = document.querySelector(".slide-3 .timeline-grid");
 
@@ -77,7 +34,7 @@
         var cards = Array.prototype.slice.call(grid.querySelectorAll(".timeline-card"));
         var notes = Array.prototype.slice.call(grid.querySelectorAll(".timeline-note"));
 
-        if (mobileQuery.matches) {
+        if (compactQuery.matches) {
             notes.forEach(function (note) {
                 note.style.removeProperty("left");
             });
@@ -258,6 +215,21 @@
                 current = 0;
             }
 
+            // Read overflowing content before vertical keys advance the deck.
+            var readingDirection = (event.key === "ArrowDown" || event.key === "PageDown") ? 1 :
+                (event.key === "ArrowUp" || event.key === "PageUp") ? -1 : 0;
+            var currentSlide = slides[current];
+            var remaining = currentSlide.scrollHeight - currentSlide.clientHeight - currentSlide.scrollTop;
+            if (readingDirection && ((readingDirection > 0 && remaining > 1) ||
+                (readingDirection < 0 && currentSlide.scrollTop > 1))) {
+                event.preventDefault();
+                currentSlide.scrollBy({
+                    top: readingDirection * (event.key.indexOf("Page") === 0 ? currentSlide.clientHeight * 0.8 : 48),
+                    behavior: "auto"
+                });
+                return;
+            }
+
             if (event.key === "ArrowRight" || event.key === "ArrowDown" || event.key === "PageDown") {
                 event.preventDefault();
                 scrollToSlide(current + 1);
@@ -326,7 +298,6 @@
 
         ScrollTrigger.addEventListener("refreshInit", setViewportUnit);
         ScrollTrigger.addEventListener("refresh", alignTimelineHonors);
-        ScrollTrigger.addEventListener("refresh", fitProjectTitles);
         ScrollTrigger.refresh();
     }
 
@@ -347,7 +318,6 @@
             track.style.removeProperty("transform");
             ScrollTrigger.removeEventListener("refreshInit", setViewportUnit);
             ScrollTrigger.removeEventListener("refresh", alignTimelineHonors);
-            ScrollTrigger.removeEventListener("refresh", fitProjectTitles);
         }
 
         document.body.classList.remove("no-gsap");
@@ -357,7 +327,7 @@
         }
 
         setViewportUnit();
-        fitProjectTitles();
+        alignTimelineHonors();
         if (mobileQuery.matches) {
             window.scrollTo(0, 0);
             track.scrollLeft = slides[index].offsetLeft;
@@ -376,7 +346,6 @@
         setViewportUnit();
         bulletizeProjectDetails();
         alignTimelineHonors();
-        fitProjectTitles();
         setActiveSlide(0);
         updateProgress(0);
         bindDotEvents();
@@ -387,17 +356,15 @@
         window.addEventListener("resize", function () {
             setViewportUnit();
             alignTimelineHonors();
-            fitProjectTitles();
             if (mobileQuery.matches) {
                 // Keep the same slide aligned after rotation or viewport resizing.
                 track.scrollLeft = slides[activeIndex].offsetLeft;
             }
         });
         window.requestAnimationFrame(alignTimelineHonors);
-        window.requestAnimationFrame(fitProjectTitles);
 
         if (document.fonts && document.fonts.ready) {
-            document.fonts.ready.then(fitProjectTitles);
+            document.fonts.ready.then(alignTimelineHonors);
         }
     }
 
