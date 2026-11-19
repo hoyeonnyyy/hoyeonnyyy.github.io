@@ -54,10 +54,7 @@ body {
     width: 100vw;
     height: calc(var(--app-vh, 1vh) * 100);
     flex: 0 0 100vw;
-    overflow-x: hidden;
-    overflow-y: auto;
-    scrollbar-width: thin;
-    scrollbar-color: rgba(125, 211, 252, 0.3) transparent;
+    overflow: hidden;
     background:
         radial-gradient(circle at 15% 20%, rgba(125, 211, 252, 0.14), transparent 45%),
         radial-gradient(circle at 85% 75%, rgba(167, 139, 250, 0.12), transparent 40%),
@@ -1462,4 +1459,64 @@ body {
         padding: 20px 16px;
         border-radius: 18px;
     }
+}
+
+/* Fit each desktop slide between the fixed controls, without an inner scroller. */
+.fitted-deck .slide-inner {
+    position: absolute;
+    top: var(--fit-center, 50%);
+    left: 50%;
+    width: clamp(960px, calc(100vw - 64px), 1440px);
+    height: auto;
+    min-height: 0;
+    margin: 0;
+    padding: 0;
+    transform: translate(-50%, -50%) scale(var(--fit-scale, 1));
+    transform-origin: center;
+}
+
+.fitted-deck .project-layout {
+    grid-template-columns: minmax(0, 1.1fr) minmax(0, 1fr);
+}
+
+.fitted-deck .outro-layout {
+    grid-template-columns: minmax(0, 1.15fr) minmax(0, 1fr);
+}
+
+.fitted-deck .identity-layout {
+    grid-template-columns: minmax(240px, 300px) minmax(0, 500px);
+}
+
+.fitted-deck .cover-keyword-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+
+.fitted-deck .cover-title {
+    font-size: clamp(1.25rem, 1.8vw, 1.8rem);
+    line-height: 1.4;
+}
+
+@media (max-width: 1200px) {
+    .fitted-deck .timeline-grid {
+        grid-template-columns: repeat(4, minmax(0, 1fr));
+    }
+
+    .fitted-deck .timeline-card {
+        grid-row: 1;
+    }
+
+    .fitted-deck .timeline-grid .timeline-note {
+        grid-row: 2;
+        width: 100%;
+        margin: 0;
+    }
+
+    .fitted-deck .timeline-card:nth-of-type(1),
+    .fitted-deck .timeline-note-1 { grid-column: 1; }
+    .fitted-deck .timeline-card:nth-of-type(2),
+    .fitted-deck .timeline-note-2 { grid-column: 2; }
+    .fitted-deck .timeline-card:nth-of-type(3),
+    .fitted-deck .timeline-note-3 { grid-column: 3; }
+    .fitted-deck .timeline-card:nth-of-type(4),
+    .fitted-deck .timeline-note-logo { grid-column: 4; }
 }

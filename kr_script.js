@@ -14,6 +14,47 @@
     var activeIndex = 0;
     var verticalLayout = false;
     var progressFramePending = false;
+    var fitFramePending = false;
+
+    function fitDesktopSlides() {
+        if (verticalLayout) {
+            return;
+        }
+
+        var languageMenu = document.querySelector(".lang-toggle");
+        var status = document.querySelector(".deck-status");
+        var topSpace = languageMenu ? languageMenu.getBoundingClientRect().bottom + 16 : 88;
+        var bottomSpace = status ? window.innerHeight - status.getBoundingClientRect().top + 16 : 88;
+
+        slides.forEach(function (slide) {
+            var inner = slide.querySelector(".slide-inner");
+            if (!inner || !inner.offsetWidth || !inner.offsetHeight) {
+                return;
+            }
+
+            var availableHeight = Math.max(1, slide.clientHeight - topSpace - bottomSpace);
+            var availableWidth = Math.max(1, slide.clientWidth - 32);
+            // Include room for the reveal animation without scaling above the designed size.
+            var naturalHeight = Math.max(inner.offsetHeight, inner.scrollHeight) + 24;
+            var naturalWidth = Math.max(inner.offsetWidth, inner.scrollWidth);
+            var scale = Math.min(1, availableHeight / naturalHeight, availableWidth / naturalWidth);
+            inner.style.setProperty("--fit-scale", String(Math.floor(scale * 10000) / 10000));
+            inner.style.setProperty("--fit-center", (topSpace + availableHeight / 2) + "px");
+            slide.scrollTop = 0;
+        });
+    }
+
+    function refreshDesktopLayout() {
+        if (fitFramePending) {
+            return;
+        }
+        fitFramePending = true;
+        window.requestAnimationFrame(function () {
+            fitFramePending = false;
+            alignTimelineHonors();
+            fitDesktopSlides();
+        });
+    }
 
     function setViewportUnit() {
         var vh = window.innerHeight * 0.01;
@@ -215,21 +256,6 @@
                 current = 0;
             }
 
-            // Read overflowing content before vertical keys advance the deck.
-            var readingDirection = (event.key === "ArrowDown" || event.key === "PageDown") ? 1 :
-                (event.key === "ArrowUp" || event.key === "PageUp") ? -1 : 0;
-            var currentSlide = slides[current];
-            var remaining = currentSlide.scrollHeight - currentSlide.clientHeight - currentSlide.scrollTop;
-            if (readingDirection && ((readingDirection > 0 && remaining > 1) ||
-                (readingDirection < 0 && currentSlide.scrollTop > 1))) {
-                event.preventDefault();
-                currentSlide.scrollBy({
-                    top: readingDirection * (event.key.indexOf("Page") === 0 ? currentSlide.clientHeight * 0.8 : 48),
-                    behavior: "auto"
-                });
-                return;
-            }
-
             if (event.key === "ArrowRight" || event.key === "ArrowDown" || event.key === "PageDown") {
                 event.preventDefault();
                 scrollToSlide(current + 1);
@@ -298,7 +324,7 @@
         });
 
         ScrollTrigger.addEventListener("refreshInit", setViewportUnit);
-        ScrollTrigger.addEventListener("refresh", alignTimelineHonors);
+        ScrollTrigger.addEventListener("refresh", refreshDesktopLayout);
         ScrollTrigger.refresh();
     }
 
@@ -337,14 +363,16 @@
             horizontalTween = null;
             track.style.removeProperty("transform");
             ScrollTrigger.removeEventListener("refreshInit", setViewportUnit);
-            ScrollTrigger.removeEventListener("refresh", alignTimelineHonors);
+            ScrollTrigger.removeEventListener("refresh", refreshDesktopLayout);
         }
 
         verticalLayout = mobileQuery.matches || !window.gsap || !window.ScrollTrigger;
         document.body.classList.toggle("vertical-deck", verticalLayout);
+        document.body.classList.toggle("fitted-deck", !verticalLayout);
 
         setViewportUnit();
         alignTimelineHonors();
+        fitDesktopSlides();
         if (verticalLayout) {
             window.scrollTo(0, slides[index].getBoundingClientRect().top + window.scrollY);
             syncVerticalProgress();
@@ -370,14 +398,25 @@
         setNavigationMode();
         window.addEventListener("resize", function () {
             setViewportUnit();
-            alignTimelineHonors();
+            refreshDesktopLayout();
             syncVerticalProgress();
         });
-        window.requestAnimationFrame(alignTimelineHonors);
+        refreshDesktopLayout();
+
+        // Images and web fonts can change a slide's natural size after initialization.
+        document.querySelectorAll(".slide img").forEach(function (img) {
+            img.addEventListener("load", refreshDesktopLayout);
+        });
+        if (window.ResizeObserver) {
+            var observer = new ResizeObserver(refreshDesktopLayout);
+            document.querySelectorAll(".slide-inner, .lang-toggle, .deck-status").forEach(function (element) {
+                observer.observe(element);
+            });
+        }
 
         if (document.fonts && document.fonts.ready) {
             document.fonts.ready.then(function () {
-                alignTimelineHonors();
+                refreshDesktopLayout();
                 syncVerticalProgress();
             });
         }
